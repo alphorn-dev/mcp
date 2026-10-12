@@ -1,0 +1,44 @@
+{
+  "manifest_version": "0.4",
+  "name": "alphorn",
+  "display_name": "Alphorn",
+  "version": "0.1.1",
+  "description": "Let AI agents notify you on Slack, Telegram, email, SMS, or push via an Alphorn webhook.",
+  "long_description": "Gives the agent a send_notification tool. Notifications go to an Alphorn webhook, and Alphorn delivers them to every channel whose filter matches, with retries. Works with the hosted service at app.alphorn.dev and with self-hosted Alphorn.",
+  "author": { "name": "Alphorn", "url": "https://alphorn.dev" },
+  "repository": { "type": "git", "url": "https://github.com/alphorn-dev/mcp" },
+  "homepage": "https://alphorn.dev",
+  "documentation": "https://docs.alphorn.dev/ai-agents/mcp/",
+  "license": "AGPL-3.0-or-later",
+  "keywords": ["notifications", "slack", "telegram", "email", "sms", "webhook", "alerts"],
+  "server": {
+    "type": "node",
+    "entry_point": "node_modules/@alphorn/mcp/dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/node_modules/@alphorn/mcp/dist/index.js"],
+      "env": {
+        "ALPHORN_WEBHOOK_URL": "${user_config.webhook_url}",
+        "ALPHORN_API_KEY": "${user_config.api_key}"
+      }
+    }
+  },
+  "user_config": {
+    "webhook_url": {
+      "type": "string",
+      "title": "Webhook Endpoint URL",
+      "description": "The Endpoint URL of your Alphorn webhook, e.g. https://app.alphorn.dev/n/V1StGXR8_Z5jdHi6B-myT",
+      "required": true,
+      "sensitive": true
+    },
+    "api_key": {
+      "type": "string",
+      "title": "API key",
+      "description": "The webhook's API key (alp_...). Leave empty if the webhook does not require one.",
+      "required": false,
+      "sensitive": true
+    }
+  },
+  "tools": [{ "name": "send_notification", "description": "Send a notification to the user through Alphorn" }],
+  "compatibility": { "runtimes": { "node": ">=20.0.0" } }
+}

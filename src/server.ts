@@ -8,7 +8,7 @@ export type Config = {
   apiKey?: string;
 };
 
-export const VERSION = "0.1.0";
+export const VERSION = "0.1.1";
 
 // The tool description is what an agent reads when deciding whether and how to notify,
 // so it states when to use it, not just what it does.

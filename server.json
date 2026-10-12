@@ -1,0 +1,32 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.alphorn-dev/mcp",
+  "title": "Alphorn",
+  "description": "Let AI agents notify you on Slack, Telegram, email, SMS, or push via an Alphorn webhook.",
+  "repository": { "url": "https://github.com/alphorn-dev/mcp", "source": "github" },
+  "websiteUrl": "https://docs.alphorn.dev/ai-agents/mcp/",
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@alphorn/mcp",
+      "version": "0.1.1",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "ALPHORN_WEBHOOK_URL",
+          "description": "Webhook Endpoint URL, e.g. https://app.alphorn.dev/n/V1StGXR8_Z5jdHi6B-myT",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "ALPHORN_API_KEY",
+          "description": "Webhook API key (alp_...), if the webhook requires one",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

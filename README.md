@@ -6,7 +6,7 @@ Works with the hosted service at [app.alphorn.dev](https://app.alphorn.dev) and 
 
 ## Setup
 
-1. Create a webhook in Alphorn and copy its **Endpoint URL** and API key ([docs](https://docs.alphorn.dev/webhooks/)).
+1. Create a webhook in Alphorn and copy its **Endpoint URL**, plus its API key if you switched on **Require API key** ([docs](https://docs.alphorn.dev/webhooks/)).
 2. Add the server to your MCP client with two environment variables:
 
 | Variable | Value |
@@ -22,6 +22,10 @@ claude mcp add alphorn -s user \
   -e ALPHORN_API_KEY=alp_... \
   -- npx -y @alphorn/mcp
 ```
+
+### Claude Desktop (one-click bundle)
+
+Download `alphorn.mcpb` from the [latest release](https://github.com/alphorn-dev/mcp/releases/latest) and open it. Claude Desktop asks for the Endpoint URL and API key.
 
 ### Claude Desktop, Cursor, and other JSON-configured clients
 
@@ -63,6 +67,8 @@ env = { ALPHORN_WEBHOOK_URL = "https://app.alphorn.dev/n/V1StGXR8_Z5jdHi6B-myT",
 | `priority` | integer 1-5 | no | 2 = finished, 3 = needs input, 4 = blocked or failed, 5 = urgent |
 | `tags` | string[] | no | Tags to filter and route on in Alphorn, e.g. `["ai-agent", "completed"]` |
 
+The tool wraps Alphorn's send endpoint. For direct HTTP use, see the [API reference](https://docs.alphorn.dev/api-reference/) and the [OpenAPI 3.1 specification](https://docs.alphorn.dev/openapi.json).
+
 Use Alphorn's [filters](https://docs.alphorn.dev/filtering/) to decide where each notification goes, for example SMS only for priority 4 and above.
 
 ## Development
@@ -71,6 +77,13 @@ Use Alphorn's [filters](https://docs.alphorn.dev/filtering/) to decide where eac
 pnpm install
 pnpm test   # builds, then runs the tests against a local fake endpoint
 ```
+
+### Releasing
+
+1. Bump `version` in `package.json`, `server.json` (both fields), `manifest.json`, and `VERSION` in `src/server.ts`.
+2. `npm publish --access public`
+3. `mcp-publisher publish` (updates the [MCP Registry](https://registry.modelcontextprotocol.io) entry from `server.json`)
+4. `pnpm bundle`, then attach `alphorn.mcpb` to a GitHub release
 
 ## License
 

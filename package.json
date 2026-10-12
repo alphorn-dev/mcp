@@ -1,6 +1,6 @@
 {
   "name": "@alphorn/mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for Alphorn: lets AI agents send notifications to Slack, email, SMS, push, and other channels through Alphorn.",
   "license": "AGPL-3.0-or-later",
   "type": "module",
@@ -17,7 +17,8 @@
   "scripts": {
     "build": "tsc",
     "test": "pnpm build && node --test dist/*.test.js",
-    "prepublishOnly": "pnpm test"
+    "prepublishOnly": "pnpm test",
+    "bundle": "node scripts/bundle.mjs"
   },
   "repository": {
     "type": "git",
@@ -42,5 +43,6 @@
     "@types/node": "^26.6.5",
     "typescript": "^7.0.2"
   },
-  "packageManager": "pnpm@12.11.2"
+  "packageManager": "pnpm@12.11.2",
+  "mcpName": "io.github.alphorn-dev/mcp"
 }

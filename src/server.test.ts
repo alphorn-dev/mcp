@@ -57,3 +57,10 @@ test("rejects an out-of-range priority before calling Alphorn", async () => {
 });
 
 test.after(() => http.close());
+
+test("VERSION matches package.json", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const pkg = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+  const { VERSION } = await import("./server.js");
+  assert.equal(VERSION, pkg.version);
+});
