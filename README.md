@@ -82,7 +82,7 @@ pnpm test   # builds, then runs the tests against a local fake endpoint
 
 1. Bump `version` in `package.json`, `server.json` (both fields), `manifest.json`, and `VERSION` in `src/server.ts`.
 2. `npm publish --access public`
-3. `mcp-publisher publish` (updates the [MCP Registry](https://registry.modelcontextprotocol.io) entry from `server.json`)
+3. Push a `v<version>` tag (or run the **Publish to MCP Registry** workflow): it publishes `server.json` to the [MCP Registry](https://registry.modelcontextprotocol.io) via GitHub OIDC
 4. `pnpm bundle`, then attach `alphorn.mcpb` to a GitHub release
 
 ## License
